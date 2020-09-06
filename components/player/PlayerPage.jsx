@@ -14,6 +14,10 @@ import {
 } from "../../Constants";
 import Header from "../header/Header";
 import _ from "lodash";
+import AttackingStats from "../stats/AttackingStats";
+import DefendingStats from "../stats/DefendingStats";
+import PassingStats from "../stats/PassingStats";
+import GoalkeeperStats from "../stats/GoalkeeperStats";
 const PLAYER_QUERY = gql`
   query player($wyId: ID!) {
     player(wyId: $wyId) {
@@ -29,6 +33,7 @@ const PLAYER_QUERY = gql`
       team {
         imageDataURL
         name
+        wyId
       }
       stats(seasonId: 185753, competitionId: 198) {
         total {
@@ -45,7 +50,7 @@ const PLAYER_QUERY = gql`
       ...defensiveStats,
       ...passingStats,
       ...goalkeeperStats,
-      ...disciplinaryStats
+      ...disciplinaryStats,
     ]).join("\n")}
   }
 `;
@@ -85,6 +90,7 @@ export default function ({ wyId }) {
       <Header
         name={data.player.team.name}
         imageDataURL={data.player.team.imageDataURL}
+        wyId={data.player.team.wyId}
       ></Header>
       <div className={styles.root}>
         <div className={styles.generalInfoSection}>
@@ -101,30 +107,46 @@ export default function ({ wyId }) {
           ></StatsCard>
         </div>
         <div className={styles.statsSection}>
-          <StatsCard
-            className={generalStyles.paper}
-            stats={attackingStatsObject}
-            columns={2}
-            title="Attacking"
-          ></StatsCard>
-          <StatsCard
-            className={generalStyles.paper}
-            stats={defensiveStatsObject}
-            columns={2}
-            title="Defending"
-          ></StatsCard>
-          <StatsCard
+          {data.player.role === "Goalkeeper" && (
+            <GoalkeeperStats
+              className={generalStyles.paper}
+              stats={goalkeeperStatsObject}
+              title="Goalkeeper"
+            ></GoalkeeperStats>
+          )}
+          {data.player.role === "Forward" ||
+          data.player.role === "Midfielder" ? (
+            <AttackingStats
+              className={generalStyles.paper}
+              stats={attackingStatsObject}
+              title="Attacking"
+            ></AttackingStats>
+          ) : (
+            <DefendingStats
+              className={generalStyles.paper}
+              stats={defensiveStatsObject}
+              title="Defending"
+            ></DefendingStats>
+          )}
+          <PassingStats
             className={generalStyles.paper}
             stats={passingStatsObject}
-            columns={2}
             title="Passing"
-          ></StatsCard>
-          <StatsCard
-            className={generalStyles.paper}
-            stats={goalkeeperStatsObject}
-            columns={2}
-            title="Goalkeeper"
-          ></StatsCard>
+          ></PassingStats>
+          {data.player.role === "Defender" ||
+          data.player.role === "Goalkeeper" ? (
+            <AttackingStats
+              className={generalStyles.paper}
+              stats={attackingStatsObject}
+              title="Attacking"
+            ></AttackingStats>
+          ) : (
+            <DefendingStats
+              className={generalStyles.paper}
+              stats={defensiveStatsObject}
+              title="Defending"
+            ></DefendingStats>
+          )}
         </div>
       </div>
     </>

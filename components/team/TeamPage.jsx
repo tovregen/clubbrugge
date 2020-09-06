@@ -19,10 +19,18 @@ const TEAM_QUERY = gql`
           total {
             matches
             goals
+            xgShot
             assists
+            xgAssist
+            successfulKeyPasses
             gkSaves
             interceptions
             duelsWon
+            gkCleanSheets
+            gkConcededGoals
+            dribbles
+            fieldAerialDuelsWon
+            recoveries
           }
         }
       }
@@ -32,10 +40,10 @@ const TEAM_QUERY = gql`
 
 const generalStats = ["matches"];
 const roleToStats = {
-  Midfielder: [...generalStats, "assists", "goals"],
-  Defender: [...generalStats, "interceptions", "duelsWon"],
-  Forward: [...generalStats, "goals", "assists"],
-  Goalkeeper: [...generalStats, "gkSaves"],
+  Midfielder: [...generalStats, "assists", "xgAssist", "goals", "successfulKeyPasses"],
+  Defender: [...generalStats, "interceptions", "recoveries", "duelsWon", "fieldAerialDuelsWon"],
+  Forward: [...generalStats, "goals", "xgShot", "assists", "dribbles"],
+  Goalkeeper: [...generalStats, "gkSaves", "gkCleanSheets"],
 };
 
 export default function TeamPage({ wyId }) {

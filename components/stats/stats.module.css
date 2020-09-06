@@ -1,14 +1,10 @@
 @value values: "../../styles/values.css";
 @value spacing from values;
 
-.statsCard {
-  display: grid;
-  grid-gap: spacing;
-}
 
 .playerStats {
   font-size: 1rem;
-  grid-gap: spacing;
+  width: 100%
 }
 
 .playerStatLabel {

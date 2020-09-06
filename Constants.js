@@ -1,3 +1,5 @@
+
+
 export const attackingStats = [
   "goals",
   "xgShot",
@@ -14,6 +16,8 @@ export const attackingStats = [
   "attackingActions",
   "successfulAttackingActions",
 ];
+
+
 
 export const generalStats = [
   "matches",
