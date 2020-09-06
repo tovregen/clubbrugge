@@ -1,19 +1,12 @@
 import styles from "./stats.module.css";
-import { withTranslation } from "../../i18n";
-
-export default withTranslation("stats")(function StatsCard({
-  stats = {},
-  title = "",
-  className,
-  t
-}) {
+export default function StatsCard({ stats = {}, title = "", className }) {
   const statsDiv = (
     <table className={styles.playerStats}>
       <tbody>
         {Object.keys(stats).map((stat) =>
           typeof stats[stat] !== "object" ? (
             <tr key={stat}>
-              <td className={styles.playerStatLabel}>{t(stat)}</td>
+              <td className={styles.playerStatLabel}>{stat}</td>
               <td>{stats[stat]}</td>
             </tr>
           ) : (
@@ -30,4 +23,4 @@ export default withTranslation("stats")(function StatsCard({
       <div className={styles.statsCard}>{statsDiv}</div>
     </section>
   );
-});
+}
