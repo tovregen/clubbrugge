@@ -1,0 +1,13 @@
+@value values: "./values.css";
+@value spacing, boxshadow, borderradius from values;
+
+.boxShadow {
+  box-shadow:boxshadow;
+}
+
+.paper {
+  border-radius: borderradius;
+  background-color: white;
+  box-shadow: boxshadow;
+    padding: spacing;
+}

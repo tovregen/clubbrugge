@@ -1,0 +1,17 @@
+.teamGrid {
+  display: grid;
+  grid-gap: 8px;
+}
+@media (min-width: 600px) and (max-width: 940px) {
+  .teamGrid {
+    padding: 16px;
+    
+  }
+}
+@media screen and (min-width: 600px) {
+  .teamGrid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-gap: 16px;
+
+  }
+}

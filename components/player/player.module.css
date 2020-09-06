@@ -1,0 +1,78 @@
+@value values: "../../styles/values.css";
+
+.root {
+  display: flex;
+}
+@media screen and (max-width: 800px) {
+  .root {
+    flex-direction: column;
+  }
+}
+
+.generalInfoSection {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 300px;
+}
+
+@media (min-width: 600px) {
+  .generalInfoSection {
+    margin-right: 16px;
+  }
+}
+
+.generalInfoSection > *,
+.statsSection > * {
+  margin-bottom: 16px;
+}
+
+.statsSection {
+  flex: 1 1 auto;
+}
+
+.playerGridItem {
+  display: flex;
+  position: relative;
+  z-index: 0;
+}
+
+.playerInfo {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 0;
+  align-items: center;
+  min-width: 200px;
+  flex: 1 1 auto;
+}
+
+.playerStats {
+  flex: 1000;
+}
+
+.playerImg {
+  background-repeat: no-repeat;
+  background-size: 130px;
+  background-position: center;
+  width: 130px;
+  height: 130px;
+  background-color: white;
+  z-index: 1;
+  position: relative;
+  flex: 0 0 130px;
+  border-radius: 130px;
+}
+
+.nameArea {
+  flex: 0;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 1.3rem;
+  z-index: 1;
+}
+
+.additionalInfo {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.8em;
+}
