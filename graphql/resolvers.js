@@ -1,6 +1,10 @@
 const AWS = require("aws-sdk");
 
-AWS.config.update({ region: "eu-central-1" });
+AWS.config.update({
+  region: "eu-central-1",
+  accessKeyId: process.env.ACCES_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+});
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 const teamById = (wyId) =>
