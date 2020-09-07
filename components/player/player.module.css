@@ -1,4 +1,5 @@
 @value values: "../../styles/values.css";
+@value spacing, moreSpacing from values;
 
 .root {
   display: flex;
@@ -18,13 +19,13 @@
 
 @media (min-width: 600px) {
   .generalInfoSection {
-    margin-right: 16px;
+    margin-right: moreSpacing;
   }
 }
 
 .generalInfoSection > *,
 .statsSection > * {
-  margin-bottom: 16px;
+  margin-bottom: moreSpacing;
 }
 
 .statsSection {
@@ -67,7 +68,7 @@
 
 .nameArea {
   flex: 0;
-  margin-top: 8px;
+  margin-top: spacing;
   text-align: center;
   font-size: 1.3rem;
   z-index: 1;

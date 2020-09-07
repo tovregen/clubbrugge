@@ -1,7 +1,7 @@
 const AWS = require("aws-sdk");
 
 AWS.config.update({
-  region: "eu-central-1",
+  region: process.env.REGION,
   accessKeyId: process.env.ACCES_KEY_ID,
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
 });

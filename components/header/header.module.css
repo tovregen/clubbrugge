@@ -1,9 +1,12 @@
+@value values: "../../styles/values.css";
+@value moreSpacing from values;
+
 .header {
     display: flex;
-    margin: 16px 0;
+    margin: moreSpacing 0;
     align-items: center;
 }
 
 .image {
-    margin-right: 16px;
+    margin-right: moreSpacing
 }

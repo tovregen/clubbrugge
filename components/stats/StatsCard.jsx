@@ -6,8 +6,8 @@ export default function StatsCard({ stats = {}, title = "", className }) {
         {Object.keys(stats).map((stat) =>
           typeof stats[stat] !== "object" ? (
             <tr key={stat}>
+              <td className={styles.playerStatNumber}>{stats[stat]}</td>
               <td className={styles.playerStatLabel}>{stat}</td>
-              <td>{stats[stat]}</td>
             </tr>
           ) : (
             <></>

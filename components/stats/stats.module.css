@@ -7,9 +7,12 @@
   width: 100%
 }
 
-.playerStatLabel {
-  width: 50%;
+.playerStatNumber {
+  min-width: 3em;
   font-weight: 500;
   text-align: right;
   padding-right: spacing;
+}
+.playerStatLabel {
+  width: 100%;
 }
