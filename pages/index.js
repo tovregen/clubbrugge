@@ -5,3 +5,8 @@ export default function Home() {
     <TeamPage wyId={5072}/>
   )
 }
+
+
+Home.getInitialProps = async () => ({
+  namespacesRequired: ["common"],
+});

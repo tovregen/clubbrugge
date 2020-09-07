@@ -40,8 +40,20 @@ const TEAM_QUERY = gql`
 
 const generalStats = ["matches"];
 const roleToStats = {
-  Midfielder: [...generalStats, "assists", "xgAssist", "goals", "successfulKeyPasses"],
-  Defender: [...generalStats, "interceptions", "recoveries", "duelsWon", "fieldAerialDuelsWon"],
+  Midfielder: [
+    ...generalStats,
+    "assists",
+    "xgAssist",
+    "goals",
+    "successfulKeyPasses",
+  ],
+  Defender: [
+    ...generalStats,
+    "interceptions",
+    "recoveries",
+    "duelsWon",
+    "fieldAerialDuelsWon",
+  ],
   Forward: [...generalStats, "goals", "xgShot", "assists", "dribbles"],
   Goalkeeper: [...generalStats, "gkSaves", "gkCleanSheets"],
 };
@@ -59,7 +71,7 @@ export default function TeamPage({ wyId }) {
         <title>{loading ? "" : name}</title>
         <link rel="icon" href={imageDataURL || "/favicon.ico"} />
       </Head>
-      <Header name={name} imageDataURL={imageDataURL}/>
+      <Header name={name} imageDataURL={imageDataURL} />
       <div className={styles.teamGrid}>
         {players.map((player) => {
           const { role, shortName, imageDataURL, stats } = player;

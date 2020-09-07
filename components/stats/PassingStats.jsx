@@ -1,41 +1,42 @@
 import { useMemo } from "react";
 import BarChart from "./BarChart";
+import { withTranslation } from "../../i18n";
 
-export default function PassingStats({ stats, className, title }) {
+export default withTranslation("common")(function PassingStats({ stats, className, title, t }) {
   const data = useMemo(
     () => [
       {
-        name: "Passes",
+        name: t("passes"),
         total: stats.passes,
         successful: stats.successfulPasses,
       },
       {
-        name: "Forward Passes",
+        name: t("forwardPasses"),
         total: stats.forwardPasses,
         successful: stats.successfulForwardPasses,
       },
       {
-        name: "Back Passes",
+        name: t("backPasses"),
         total: stats.backPasses,
         successful: stats.successfulBackPasses,
       },
       {
-        name: "Through Balls",
+        name: t("throughPasses"),
         total: stats.throughPasses,
         successful: stats.successfulThroughPasses,
       },
       {
-        name: "Vertical Passes",
+        name: t("verticalPasses"),
         total: stats.verticalPasses,
         successful: stats.successfulVerticalPasses,
       },
       {
-        name: "Long Balls",
+        name: t("longPasses"),
         total: stats.longPasses,
         successful: stats.successfulLongPasses,
       },
       {
-        name: "Lateral Passes",
+        name: t("lateralPasses"),
         total: stats.lateralPasses,
         successful: stats.successfulLateralPasses,
       },
@@ -45,9 +46,9 @@ export default function PassingStats({ stats, className, title }) {
 
   return (
     <div className={className}>
-      {title && <h3>{title}</h3>}
+      <h3>{t("passing")}</h3>
 
       <BarChart data={data} />
     </div>
   );
-}
+})

@@ -8,8 +8,9 @@ import {
   Bar,
   ResponsiveContainer,
 } from "recharts";
+import { withTranslation } from "../../i18n";
 
-export default function BarChart({ data }) {
+export default withTranslation("common")(function BarChart({ data, t }) {
   return (
     <ResponsiveContainer height={250} width="100%">
       <BarRechart data={data}>
@@ -18,9 +19,9 @@ export default function BarChart({ data }) {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar name="Total" dataKey="total" fill="#0572ff" />
-        <Bar name="Successful" dataKey="successful" fill="#000000" />
+        <Bar name={t("total")} dataKey="total" fill="#0572ff" />
+        <Bar name={t("successful")} dataKey="successful" fill="#000000" />
       </BarRechart>
     </ResponsiveContainer>
   );
-}
+})

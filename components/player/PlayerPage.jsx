@@ -1,23 +1,24 @@
 import { gql, useQuery } from "@apollo/client";
+import _ from "lodash";
 import React, { useMemo } from "react";
-import PlayerCard from "./PlayerCard";
-import styles from "./player.module.css";
-import generalStyles from "../../styles/general.module.css";
-import StatsCard from "../stats/StatsCard";
 import {
   attackingStats,
-  generalStats,
   defensiveStats,
-  passingStats,
-  goalkeeperStats,
   disciplinaryStats,
+  generalStats,
+  goalkeeperStats,
+  passingStats,
 } from "../../Constants";
+import generalStyles from "../../styles/general.module.css";
 import Header from "../header/Header";
-import _ from "lodash";
 import AttackingStats from "../stats/AttackingStats";
 import DefendingStats from "../stats/DefendingStats";
-import PassingStats from "../stats/PassingStats";
 import GoalkeeperStats from "../stats/GoalkeeperStats";
+import PassingStats from "../stats/PassingStats";
+import StatsCard from "../stats/StatsCard";
+import styles from "./player.module.css";
+import PlayerCard from "./PlayerCard";
+import { withTranslation } from "../../i18n";
 const PLAYER_QUERY = gql`
   query player($wyId: ID!) {
     player(wyId: $wyId) {
@@ -56,7 +57,8 @@ const PLAYER_QUERY = gql`
 `;
 const getStats = (keys, object) =>
   keys.reduce((mem, val) => ({ ...mem, [val]: object[val] }), {});
-export default function ({ wyId }) {
+
+export default withTranslation("common")(function ({ wyId, t }) {
   const { loading, error, data = { team: {} } } = useQuery(PLAYER_QUERY, {
     variables: { wyId },
   });
@@ -96,12 +98,12 @@ export default function ({ wyId }) {
         <div className={styles.generalInfoSection}>
           <PlayerCard {...data.player} stats={{}} />
           <StatsCard
-            title="General"
+            title={t("general")}
             className={generalStyles.paper}
             stats={generalStatsObject}
           ></StatsCard>
           <StatsCard
-            title="Disciplinary"
+            title={t("disciplinary")}
             className={generalStyles.paper}
             stats={disciplinaryStatsObject}
           ></StatsCard>
@@ -111,7 +113,6 @@ export default function ({ wyId }) {
             <GoalkeeperStats
               className={generalStyles.paper}
               stats={goalkeeperStatsObject}
-              title="Goalkeeper"
             ></GoalkeeperStats>
           )}
           {data.player.role === "Forward" ||
@@ -119,36 +120,31 @@ export default function ({ wyId }) {
             <AttackingStats
               className={generalStyles.paper}
               stats={attackingStatsObject}
-              title="Attacking"
             ></AttackingStats>
           ) : (
             <DefendingStats
               className={generalStyles.paper}
               stats={defensiveStatsObject}
-              title="Defending"
             ></DefendingStats>
           )}
           <PassingStats
             className={generalStyles.paper}
             stats={passingStatsObject}
-            title="Passing"
           ></PassingStats>
           {data.player.role === "Defender" ||
           data.player.role === "Goalkeeper" ? (
             <AttackingStats
               className={generalStyles.paper}
               stats={attackingStatsObject}
-              title="Attacking"
             ></AttackingStats>
           ) : (
             <DefendingStats
               className={generalStyles.paper}
               stats={defensiveStatsObject}
-              title="Defending"
             ></DefendingStats>
           )}
         </div>
       </div>
     </>
   );
-}
+});

@@ -1,5 +1,7 @@
+import { withTranslation } from '../../i18n';
 import styles from "./stats.module.css";
-export default function StatsCard({ stats = {}, title = "", className }) {
+
+export default withTranslation("common")(function StatsCard({ stats = {}, title = "", className, t }) {
   const statsDiv = (
     <table className={styles.playerStats}>
       <tbody>
@@ -7,12 +9,12 @@ export default function StatsCard({ stats = {}, title = "", className }) {
           typeof stats[stat] !== "object" ? (
             <tr key={stat}>
               <td className={styles.playerStatNumber}>{stats[stat]}</td>
-              <td className={styles.playerStatLabel}>{stat}</td>
+              <td className={styles.playerStatLabel}>{t(stat)}</td>
             </tr>
           ) : (
             <></>
           )
-        )}{" "}
+        )}
       </tbody>
     </table>
   );
@@ -23,4 +25,4 @@ export default function StatsCard({ stats = {}, title = "", className }) {
       <div className={styles.statsCard}>{statsDiv}</div>
     </section>
   );
-}
+})

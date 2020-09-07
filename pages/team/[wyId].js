@@ -10,3 +10,8 @@ export default function Team() {
 
   return <> {wyId && <TeamPage wyId={wyId} />}</>;
 }
+
+
+Team.getInitialProps = async () => ({
+  namespacesRequired: ["common"],
+});

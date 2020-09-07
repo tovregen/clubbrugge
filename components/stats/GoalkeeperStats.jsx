@@ -1,29 +1,33 @@
 import { useMemo } from "react";
 import BarChart from "./BarChart";
+import { withTranslation } from "../../i18n";
 
-export default function GoalkeeperStats({ stats, className, title }) {
+export default withTranslation("common")(function GoalkeeperStats({
+  stats,
+  className,
+  t,
+}) {
   const data = useMemo(
     () => [
-      { name: "Clean Sheets", total: stats.gkCleanSheets },
-      { name: "Conceded", total: stats.gkConcededGoals },
-      { name: "Saves", total: stats.gkSaves },
+      { name: t("gkCleanSheets"), total: stats.gkCleanSheets },
+      { name: t("gkConcededGoals"), total: stats.gkConcededGoals },
+      { name: t("gkSaves"), total: stats.gkSaves },
       {
-        name: "Aerial Duels",
+        name: t("gkAerialDuels"),
         total: stats.gkAerialDuels,
         successful: stats.gkAerialDuelsWon,
       },
-      { name: "Short Kicks", total: stats.goalKicksShort },
-      { name: "Long Kicks", total: stats.goalKicksLong },
-
+      { name: t("goalKicksShort"), total: stats.goalKicksShort },
+      { name: t("goalKicksLong"), total: stats.goalKicksLong },
     ],
     [stats]
   );
 
   return (
     <div className={className}>
-      {title && <h3>{title}</h3>}
+      <h3>{t("goalkeeper")}</h3>
 
       <BarChart data={data} />
     </div>
   );
-}
+});

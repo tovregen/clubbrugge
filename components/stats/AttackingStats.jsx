@@ -1,23 +1,28 @@
 import { useMemo } from "react";
 import BarChart from "./BarChart";
+import { withTranslation } from "../../i18n";
 
-export default function AttackingStats({ stats, className, title }) {
+export default withTranslation("common")(function AttackingStats({
+  stats,
+  className,
+  t
+}) {
   const data = useMemo(
     () => [
-      { name: "Goals", total: stats.goals },
-      { name: "Assists", total: stats.assists },
+      { name: t("goals"), total: stats.goals },
+      { name: t("assists"), total: stats.assists },
       {
-        name: "Penalties",
+        name: t("penalties"),
         total: stats.penalties,
         successful: stats.successfulPenalties,
       },
       {
-        name: "Crosses",
+        name: t("crosses"),
         total: stats.crosses,
         successful: stats.successfulCrosses,
       },
       {
-        name: "Key Passes",
+        name: t("keyPasses"),
         total: stats.keyPasses,
         successful: stats.successfulKeyPasses,
       },
@@ -27,9 +32,9 @@ export default function AttackingStats({ stats, className, title }) {
 
   return (
     <div className={className}>
-      {title && <h3>{title}</h3>}
+      <h3>{t("offense")}</h3>
 
       <BarChart data={data} />
     </div>
   );
-}
+});

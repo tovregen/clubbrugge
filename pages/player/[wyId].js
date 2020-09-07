@@ -3,7 +3,7 @@ import React from "react";
 import PlayerStats from "../../components/player/PlayerPage";
 
 
-export default function ({}) {
+export default function Player({}) {
   const router = useRouter();
   let { wyId } = router.query;
 
@@ -11,3 +11,9 @@ export default function ({}) {
     <>{wyId && <PlayerStats wyId={wyId} />}</>
   );
 }
+
+
+Player.getInitialProps = async () => ({
+  namespacesRequired: ["common"],
+});
+
